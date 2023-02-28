@@ -8,10 +8,30 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "@ckeditor/ckeditor5-build-classic": "^35.1.0",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^35.1.0",
+    "@ckeditor/ckeditor5-build-inline": "^35.1.0",
+    "@ckeditor/ckeditor5-upload": "^35.1.0",
+    "@ckeditor/ckeditor5-vue": "^4.0.1",
+    "@gecharita/ckeditor5-super-build": "^1.1.1-0.4-link",
+    "@popperjs/core": "^2.11.6",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.3",
+    "ckeditor5-custom-build": "file:./ckeditor5",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "lodash.random": "^3.2.0",
+    "moment": "^2.29.4",
+    "mutationobserver-shim": "^0.3.7",
+    "popper.js": "^1.16.1",
+    "portal-vue": "^2.1.7",
+    "vue": "^3.2.39",
+    "vue-awesome-paginate": "^1.0.5",
+    "vue-router": "^4.1.5",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@ckeditor/ckeditor5-editor-inline": "^35.1.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
@@ -21,6 +41,9 @@
     "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "typescript": "~4.5.5"
+    "sass": "^1.26.11",
+    "sass-loader": "^10.0.2",
+    "typescript": "~4.5.5",
+    "vue-cli-plugin-bootstrap-vue": "~0.8.2"
   }
 }
