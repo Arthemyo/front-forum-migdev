@@ -17,9 +17,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex">
-                                <img v-if="imagem.substr(18, 18 - 5) != 'null'" :src="imagem" alt="" class="p-1">
-                                <img v-else src="../assets/img_311846.png" alt="" class="p-1" />
-                                <p class="d-flex text-muted mb-0">{{ nomeUsuario }}</p>
+                                <p class="d-flex text-bold mb-0">{{ nomeUsuario }}</p>
                             </div>
                             <span>{{ format_date(post.dataCriacao) }}</span>
                         </div>
@@ -84,8 +82,7 @@ export default defineComponent({
             textBtnLike: "",
             numAvaliacoes: 0,
             mostrar: false,
-            modal: bootstrap,
-            imagem: "data:image;base64,"
+            modal: bootstrap
         };
     },
     methods: {
@@ -182,7 +179,6 @@ export default defineComponent({
                 .then((data) => {
                     this.post = data.data;
                     this.nomeUsuario = data.data.usuario.usuario;
-                    this.imagem += data.data.usuario.imagem;
                 }).catch((err) => {
                     console.log(err);
 
@@ -250,15 +246,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-img {
-    width: 35px;
-    border-radius: 100%;
-}
-
-.util-res {
-    background-color: rgb(245, 243, 243);
-}
-
 .btn-curtir:hover {
     color: black;
     cursor: pointer;
@@ -270,14 +257,6 @@ img {
 
 .background {
     background-color: #489d75;
-}
-
-.language-plaintext {
-    background: blue;
-}
-
-.txt-ava {
-    margin-right: 3px;
 }
 
 i:hover {

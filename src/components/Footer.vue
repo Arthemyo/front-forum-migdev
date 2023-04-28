@@ -1,16 +1,9 @@
 <template>
-    <footer class="bg-dark bg-gradient border mt-0 conteiner d-flex justify-content-center align-items-center"
+    <footer class="bg-dark mt-0 conteiner d-flex justify-content-center align-items-center"
         style="height: 10rem;">
         <div class="m-3">
             <p class="text-light d-flex mt-4 logo col-md-2 fs-3">Migdev</p>
         </div>
-        <!-- <div class="m-3 pt-4">
-            <ul class="d-flex">
-                <li class="text-light">Instagram</li>
-                <li class="text-light">Facebook</li>
-                <li class="text-light">Whatsapp</li>
-            </ul>
-        </div> -->
     </footer>
 </template>
 
@@ -41,5 +34,4 @@ ul {
 li {
     padding-left: 10px;
 }
-
 </style>

@@ -1,18 +1,22 @@
 <template>
     <div class="conteiner">
-        <div class="row p-5">
-            <h1>TAGS</h1>
-            <section class="d-flex justify-content-center pt-5">
-                <div class="m-5">
-                    <ul class="d-flex">
-                        <li v-for="tag in tags" :key="tag.id">
-                            <RouterLink to="" class="m-3 text-primary">
-                                <div class="tag">{{ tag.tag }}</div>
-                            </RouterLink>
-                        </li>
-                    </ul>
+        <div class="row">
+            <div class="p-5">
+                <div class="m-3">
+                    <h1>TAGS</h1>
+                    <section class="d-flex justify-content-center">
+                        <div class="m-1">
+                            <ul class="d-flex">
+                                <li v-for="tag in tags" :key="tag.id">
+                                    <RouterLink to="" class="m-1 text-primary tag">
+                                        {{ tag.tag }}
+                                    </RouterLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 </template>
@@ -59,5 +63,6 @@ a {
 }
 .tag {
     background: #d5e4fa;
+    margin: 2px;
 }
 </style>

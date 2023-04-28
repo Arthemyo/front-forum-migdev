@@ -4,9 +4,9 @@
             <li>
                 <input type="text" v-model="tags" @change="searchTag(tags)" placeholder="Search for some tag">
             </li>
-            <li class="filtro-li fw-semibold border" @click="getMelhores()" :class="{ 'filtro-li-active': melhores == 1 }">
+            <li class="filtro-li fw-semibold" @click="getMelhores()" :class="{ 'filtro-li-active': melhores == 1 }">
                 MELHORES</li>
-            <li class="filtro-li fw-semibold border" @click="getRecentes()" :class="{ 'filtro-li-active': melhores == 0 }">
+            <li class="filtro-li fw-semibold" @click="getRecentes()" :class="{ 'filtro-li-active': melhores == 0 }">
                 RECENTES</li>
         </ul>
     </section>
@@ -123,23 +123,19 @@ ul {
 .filtro-li {
     text-decoration: none;
     color: black;
-    padding: 4px;
+    padding: 2px;
     cursor: pointer;
     margin-left: 4px;
 }
 
 .filtro-li:hover {
-    background-color: #acceee;
-    color: #261B70;
+    color: #697a73;
 }
 
 .filtro-li-active {
-    background-color: #acceee;
-    color: #261B70;
-}
-
-.btn-active {
-    background-color: blue;
-    color: white;
+    color: #01944f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
 }
 </style>

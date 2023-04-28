@@ -9,6 +9,9 @@
                                     class="d-block form-control" type="email" placeholder="Digite seu email"></label>
                             <label class="d-block mt-2 fw-light">Senha<input v-model="senha" id="senha" type="password"
                                     class="form-control d-block" placeholder="Digite sua senha"></label>
+                            <div>
+                                <RouterLink to="/forgotPassword">Esqueceu a senha?</RouterLink>
+                            </div>
                             <span id="spanError" :hidden="!errorLogin ? true : false"
                                 class=" m-2 d-block alert alert-danger d-none">Email ou senha incorreta</span>
                             <button class="btn btn-primary mt-2" type="button" @click="logUser()">Login</button>

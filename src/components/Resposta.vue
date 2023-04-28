@@ -1,19 +1,6 @@
 <template>
-    <Modal :mostrar="mostrar" title-modal="Atenção" id="mmodal">
-        <ModalBody>
-            <p>Você precisa está logado para avaliar essa resposta!!!</p>
-        </ModalBody>
-        <ModalFooter>
-            <RouterLink @click="distroyModal()" to="/login"><button class="btn btn-success background">Logar</button>
-            </RouterLink>
-            <RouterLink @click="distroyModal()" to="/cadastro"><button class="btn btn-primary">Cadastrar</button>
-            </RouterLink>
-        </ModalFooter>
-    </Modal>
     <div class="d-flex justify-content-between">
         <div class="d-flex">
-            <img v-if="imagem !== 'data:image;base64,null'" :src="imagem" alt="" class="p-1">
-            <img v-else src="../assets/img_311846.png" alt="" class="p-1" />
             <p class="d-flex text-muted mb-0">{{ resposta?.nomeUsuario }}</p>
         </div>
         <span>{{ format_date(resposta?.dataCriacao) }}</span>
@@ -45,14 +32,10 @@ import { defineComponent, computed } from 'vue'
 import moment from 'moment'
 import axios from 'axios'
 import { useStore } from 'vuex'
-import Modal from '@/components/Modal.vue'
-import ModalBody from '@/components/ModalBody.vue'
-import ModalFooter from '@/components/ModalFooter.vue'
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import { useToast } from "vue-toastification";
 
 export default defineComponent({
     name: 'RevpostVue',
-    components: {Modal, ModalBody, ModalFooter},
     props: {
         resposta: {
             type: Object
@@ -61,10 +44,7 @@ export default defineComponent({
     data() {
         return {
             getRankRes: null,
-            status: 0,
-            imagem: "data:image;base64,",
-            mostrar: false,
-            modal: bootstrap
+            status: 0
         }
     },
     setup() {
@@ -73,16 +53,18 @@ export default defineComponent({
         const user = computed(() => store.getters.getUser);
         const logado = computed(() => store.getters.isLogado)
 
+        const toast = useToast();
+
         return {
             user,
             token,
-            logado
+            logado,
+            toast
         };
     },
     mounted() {
 
         this.getRank(this.resposta?.id)
-        this.imagem += this.resposta?.imagem
     },
     methods: {
         async getRank(id) {
@@ -98,6 +80,7 @@ export default defineComponent({
                     .then(data => {
                         this.status = data.status
                         this.getRankRes = data.data
+                        
                     })
             }
         },
@@ -112,24 +95,14 @@ export default defineComponent({
                 }
             })
                 .then(() => {
-                    location.reload()
-                })
-                .catch(err => {
-                    this.mostrar = true
-
+                    this.$router.go(0)
+                    this.toast.success("Resposta avaliada!");
+                }).catch(err => {
                     if (err.response.status == 403) {
-
-                        this.modal = new bootstrap.Modal('#mmodal', {
-                            keyboard: false
-                        })
-
-                        this.modal.toggle()
+                        this.toast.warning("Precisa estar logado!");
                     }
                     console.log(err)
                 });
-        },
-        distroyModal() {
-            this.modal.toggle()
         },
         format_date(value) {
             if (value) {

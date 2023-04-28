@@ -6,9 +6,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex">
-                                <img v-if="imagem.substr(18, 18 -5) != 'null'" :src="imagem" alt="" class="p-1">
-                                <img v-else src="../assets/img_311846.png" alt="" class="p-1"/>
-                                <p class="d-flex text-muted mb-0  ">{{ post?.usuario.usuario }}</p>
+                                <p class="d-flex text-bold mb-0 txt-nameUser">{{ post?.usuario.usuario }}</p>
                             </div>
                             <span class="text-muted">{{ format_date(post?.dataCriacao) }}</span>
                         </div>
@@ -65,9 +63,6 @@ export default defineComponent({
                 return moment(String(value)).format('DD/MM/YYYY')
             }
         }
-    },
-    mounted(){
-        this.imagem += this.post?.usuario.imagem
     }
 })
 </script>
@@ -77,15 +72,14 @@ h5 {
     margin-right: 5px;
 }
 
-img{
-  width: 35px;
-  border-radius: 100%;
-}
-
 .tag{
     background-color: #d4d3d3;
     padding: 2px 16px;
     margin-right: 10px;
     border-radius: 8px;
+}
+
+.txt-nameUser{
+    margin-top: 3px;
 }
 </style>

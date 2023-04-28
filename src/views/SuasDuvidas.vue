@@ -9,8 +9,6 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex">
-                                <img v-if="user.imagem.substr(18, 18 -5) != 'null'" :src="imagem" alt="" class="p-1 img">
-                                <img v-else src="../assets/img_311846.png" alt="" class="p-1 img"/>
                                 <RouterLink class="d-flex text-muted mb-0 " to="/user">{{ post.usuario.usuario }}</RouterLink>
                             </div>
                             <span class="text-muted ">{{ format_date(post.dataCriacao) }}</span>

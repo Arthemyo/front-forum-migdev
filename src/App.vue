@@ -47,6 +47,7 @@ export default defineComponent({
 .conteiner{
   padding: 0;
 }
+
 .row {
     margin-left: 0;
     margin-right: 0;
