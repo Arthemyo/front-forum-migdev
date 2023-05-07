@@ -2,7 +2,12 @@
     <header class="conteiner">
         <div class="row p-2 bg-light bg-opacity-100 shadow-sm">
             <div class="d-flex justify-content-between">
-                <p class="mt-4 logo col-md-2">Migdev</p>
+                <div class="d-flex align-items-center">
+                    <p class="m-4 logo col-md-2">Migdev</p>
+                    <div class="d-flex search">
+                        <input placeholder="Pesquisar" class="m-1 col-md-4 form-control" type="text">
+                    </div>
+                </div>
                 <ul class="col-md-2 mt-3">
                     <div class="d-flex">
                         <div v-if="isLogado" class="dropdown">
@@ -12,10 +17,10 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <RouterLink class="dropdown-item" to="/">
-                                    <li @click="logOff">Sair</li>
+                                    <li @click="logOff" class="fw-semibold text-danger">Sair</li>
                                 </RouterLink>
                                 <RouterLink class="dropdown-item" to="/suas_duvidas">
-                                    <li>Suas Dúvidas</li>
+                                    <li class="fw-semibold">Suas Dúvidas</li>
                                 </RouterLink>
                             </ul>
                         </div>
@@ -87,5 +92,12 @@ a {
 ul {
     text-decoration: none;
     list-style: none;
+}
+
+.search > input{
+    height: 1.5rem;
+    padding: 8px;
+    width: 15.5rem;
+    border-radius: 3px;
 }
 </style>

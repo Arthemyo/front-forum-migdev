@@ -2,7 +2,7 @@
     <section class="m-3">
         <ul class="d-flex">
             <li>
-                <input type="text" v-model="tags" @change="searchTag(tags)" placeholder="Search for some tag">
+                <input type="text" v-model="tags" @change="searchTag(tags)" placeholder="Pesquisar tag">
             </li>
             <li class="filtro-li fw-semibold" @click="getMelhores()" :class="{ 'filtro-li-active': melhores == 1 }">
                 MELHORES</li>
@@ -21,16 +21,15 @@
                 <div v-else v-for="post in dataApi" :key="post.id" class="mt-3 post">
                     <PostComponent :post="post"></PostComponent>
                 </div>
-                <div class="d-flex d-flex justify-content-center mt-4">
-                    <vue-awesome-paginate paginate-buttons-class="btn" active-page-class="btn-active"
-                        back-button-class="back-btn" next-button-class="next-btn" :total-items="itensTotal"
-                        :items-per-page="perPage" v-model="currentPage" :on-click="onClickHandler" :showEndingButtons="true"
-                        :maxPagesShown="3" />
+                <div class="d-flex justify-content-center">
+                    <button type="button" @click="getMoreItens()" class=" mt-4 btn btn-primary">load more</button>
                 </div>
             </div>
         </div>
         <div v-else>
-            <h1>SEM CONTEÚDO!</h1>
+            <Placeholder class="mt-5"></Placeholder>
+            <Placeholder class="mt-5"></Placeholder>
+            <Placeholder class="mt-5"></Placeholder>
         </div>
     </section>
 </template>
@@ -51,38 +50,35 @@ export default defineComponent({
     data() {
         return {
             dataApi: [],
-            pageble: {},
-            currentPage: 1,
-            totalPage: 1,
-            itensTotal: 1,
-            perPage: 1,
             melhores: 0,
             tags: '',
             success: false,
-            contentEmpty: true
+            contentEmpty: true,
+            streamItens: 4
         }
     },
     methods: {
-        onClickHandler(page) {
-            this.fetchPosts(page);
+        onClickHandler() {
+            this.fetchPosts();
         },
-        async fetchPosts(pageValue) {
-            await axios.get(`http://localhost:8080/posts?page=${pageValue - 1}&melhores=${this.melhores}&tag=${this.tags}`)
+        async fetchPosts() {
+            await axios.get(`http://localhost:8080/posts/stream/${this.streamItens}?melhores=${this.melhores}&tag=${this.tags}`)
                 .then((data) => {
-                    this.dataApi = data.data.content
-                    this.pageble = data.data.pageable
-                    this.totalPage = data.data.totalPages
-                    this.itensTotal = data.data.totalElements
-                    this.perPage = data.data.pageable.pageSize
+                    this.dataApi = data.data
 
                     this.contentEmpty = this.dataApi.length != 0 ? false : true
+                    setTimeout(()=>{
+                        this.success = true
+                    }, 1000)
 
-                    console.log(this.dataApi);
-                    
                 })
                 .catch((error) => {
                     alert(error)
-                    this.success = false
+                    
+                    setTimeout(()=>{
+                        this.success = false
+                    }, 3000)
+
                     if (error.response.status == 404) {
                         this.$router.push("/View404")
                     }
@@ -90,22 +86,23 @@ export default defineComponent({
         },
         getMelhores() {
             this.melhores = 1
-            this.fetchPosts(this.currentPage)
+            this.fetchPosts()
         },
         getRecentes() {
             this.melhores = 0
-            this.fetchPosts(this.currentPage)
+            this.fetchPosts()
         },
         searchTag(tag) {
             this.tags = tag
-            this.fetchPosts(this.currentPage)
+            this.fetchPosts()
+        },
+        getMoreItens(){
+            this.streamItens += 4
+            this.fetchPosts()
         }
     },
     mounted() {
-        setTimeout(() => {
-            this.success = true
-        }, 1000)
-        this.onClickHandler(this.currentPage)
+        this.onClickHandler()
     }
 })
 </script>

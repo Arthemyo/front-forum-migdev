@@ -18,12 +18,14 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <div class="d-flex">
-                            <div class="tag" v-for="tags in post?.tags" :key="tags.id">
+                        <div class="d-flex flex-wrap col-md-10">
+                            <div class="tag m-1" v-for="tags in post?.tags" :key="tags.id">
                                 <span>{{tags.tag}}</span>
                             </div>
                         </div>
-                        <div class="text-muted">Like: {{post?.avaliacao}}</div>
+                        <div class="d-flex col-md-2 like">
+                            <spam class="text-muted">Like: {{post?.avaliacao}}</spam>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,7 +69,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 h5 {
     margin-right: 5px;
 }
@@ -82,4 +84,5 @@ h5 {
 .txt-nameUser{
     margin-top: 3px;
 }
+
 </style>

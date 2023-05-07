@@ -62,7 +62,8 @@ export default defineComponent({
                     'Content-Type': 'application/json'
                 }
             }).then((data) => {
-                this.$router.push(`/post/${data.data.id}`)
+                console.log(data.data);
+                
             }).catch((e) => {
                 console.log(e.response.data)
             })

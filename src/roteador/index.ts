@@ -224,9 +224,8 @@ const rotas: RouteRecordRaw[] = [
         path: '/suas_duvidas',
         name: 'SuasDuvidas',
         component: SuasDuvidas,
-        props: true,
         meta: {
-            requiresGuest: true
+            requiresGuest: false
         },
         beforeEnter: async (to, from, next) => {
             const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
@@ -241,7 +240,7 @@ const rotas: RouteRecordRaw[] = [
                 next()
             }
             else {
-                next('/posts');
+                next();
             }
         }
     }

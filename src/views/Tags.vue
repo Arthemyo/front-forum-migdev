@@ -4,10 +4,10 @@
             <div class="p-5">
                 <div class="m-3">
                     <h1>TAGS</h1>
-                    <section class="d-flex justify-content-center">
-                        <div class="m-1">
-                            <ul class="d-flex">
-                                <li v-for="tag in tags" :key="tag.id">
+                    <section class="d-flex">
+                        <div class="m-1 justify-content-center">
+                            <ul class="d-flex flex-wrap">
+                                <li class="m-1" v-for="tag in tags" :key="tag.id">
                                     <RouterLink to="" class="m-1 text-primary tag">
                                         {{ tag.tag }}
                                     </RouterLink>
@@ -61,8 +61,11 @@ a {
     margin-left: 0;
     margin-right: 0;
 }
-.tag {
-    background: #d5e4fa;
-    margin: 2px;
+
+.tag{
+    background-color: #abd2f1;
+    padding: 2px 16px;
+    margin-right: 10px;
+    border-radius: 8px;
 }
 </style>

@@ -4,9 +4,9 @@
             <div class="m-1 d-flex justify-content-center pt-5">
                 <div class="col-md-6">
                     <div class="d-flex">
-                        <div class="mt-3 p-3">
-                            <p class="fw-light">{{ user.nome }}</p>
-                            <p class="fw-light">{{ user.email }}</p>
+                        <div class="mt-3 p-3 col-md-12">
+                            <input class="form-control" type="text" v-model="user.nome">
+                            <input class="form-control" type="text" v-model="user.email">
                         </div>
                     </div>
                     
@@ -48,5 +48,9 @@ img {
 .row {
     margin-left: 0;
     margin-right: 0;
+}
+
+input{
+    margin-top: 8px;
 }
 </style>
